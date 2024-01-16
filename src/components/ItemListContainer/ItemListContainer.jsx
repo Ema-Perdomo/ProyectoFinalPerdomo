@@ -1,41 +1,40 @@
-import {useState,useEffect} from 'react'
-import {useParams} from 'react-router-dom'
-import arrayProductos from '../Json/arrayProductos.json'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { getFirestore, collection, getDocs, where, query } from 'firebase/firestore';
 import ItemList from '../ItemList/ItemList'
 
-const ItemListContainer = ({greeting}) => {
-  
+const ItemListContainer = ({ greeting }) => {
+
   const [item, setItem] = useState([])
   //Usa id para enrutamiento y filtrado
-  const {id} = useParams();
+  const { id } = useParams();
 
-  useEffect(()=>{
-    const fetchData = async()=>{
-      try{
-        const data = await new Promise((resolve)=>{
-          setTimeout(()=>{
-            //if ternario filtra segun categoria del json arrayProductos
-            resolve(id ? arrayProductos.filter(item => item.categoria === id) : arrayProductos)
-          }, 2000);
-        });
-        //Renderizo los items en pantalla
-        setItem(data);
-    }catch(error){
-      console.log('Error', error);
-    }
-  };
-  fetchData();
-  }, [id]) //id indica cuantas veces se ejecuta la logica dentro del componente
-  
-  return (
+  useEffect(() => {
+    const queryDb = getFirestore();
+    const queryCollection = collection(queryDb, 'item');
+
+    if (id) {
+      //traigo
+      const queryFilter = query(queryCollection, where('categoryId'), '==', id);
+      getDocs(queryFilter).then((response) =>
+        setItem(response.docs.map((p)=> ({ id: p.id, ...p.data() })))
+      );
+    }else {
+  getDocs(queryCollection).then((response) =>
+    setItem(response.docs.map((p)=>({ id: p.id, ...p.data() })))
+    );
+}
+  }, [id])
+
+return (
+  <div>
+    <h3 className='d-flex justify-content-center mt-2'>{greeting}</h3>
     <div>
-      <h3 className='d-flex justify-content-center mt-2'>{greeting}</h3>
-      <div>
-        <ItemList item={item}/>
-      </div>      
-      <hr />
+      <ItemList item={item} />
     </div>
-  )
+    <hr />
+  </div>
+)
 }
 
 export default ItemListContainer

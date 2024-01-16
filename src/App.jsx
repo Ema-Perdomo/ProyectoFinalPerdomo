@@ -2,9 +2,8 @@ import NavBar from './components/NavBar/NavBar'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import CartWidget from './components/CartWidget/CartWidget.jsx';
 import ItemListContainer from './components/itemListContainer/itemListContainer';
-import error from './components/error.jsx' ;
-
-
+import CheckOut from './components/Checkout/CheckOut.jsx';
+import error from './components/Error.jsx' ;
 
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer.jsx';
 
@@ -25,8 +24,10 @@ function App() {
           <Route path={'/'} element={ <ItemListContainer greeting='Insumos deportivos'/> } />
           <Route path={"/categoria/:id"} element={ <ItemListContainer  />} />
           <Route path={"/item/:id"}element={ <ItemDetailContainer /> } />
-          <Route path={'/cart'} element={ <CartWidget /> } />          
-          <Route path={'*'} element={ <error /> }></Route>  
+          <Route path={'/cart'} element={ <CartWidget /> } />  
+          <Route path={'/cart'} element={ <Cart /> } />    
+          <Route path={'/checkout'} element={ <CheckOut /> } />          
+          <Route path={'*'} element={ <Error /> } />  
 
         </Routes>
 
