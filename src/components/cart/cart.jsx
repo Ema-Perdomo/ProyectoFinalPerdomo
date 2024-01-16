@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import ItemCart from '../ItemCart/ItemCart';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+// import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 
 
@@ -39,7 +39,8 @@ const cart = () => {
       </div>
     );
   }
-
+  
+  // <button onClick={handleClick} className='btn'>Finalizar Compra </button>
   return (
     <div>
       {cart.map((item) => (
@@ -49,7 +50,8 @@ const cart = () => {
 
       <Link to="/checkout">
         {' '}
-        <button onClick={handleClick} className='btn'>Finalizar Compra </button>
+        <button className="btn-total">Finalizar Compra</button>
+        
       </Link>
     </div>
   );
