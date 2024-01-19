@@ -15,9 +15,9 @@ const ItemListContainer = ({ greeting }) => {
 
     if (id) {
       //traigo
-      const queryFilter = query(queryCollection, where('categoryId'), '==', id);
+      const queryFilter = query(queryCollection, where('categoria', '==', id));
       getDocs(queryFilter).then((response) =>
-        setItem(response.docs.map((p)=> ({ id: p.id, ...p.data() })))
+        setItem(response.docs.map((p) => ({ id: p.id, ...p.data() })))
       );
     }else {
   getDocs(queryCollection).then((response) =>
@@ -32,7 +32,7 @@ return (
     <div>
       <ItemList item={item} />
     </div>
-    <hr />
+    <hr/>
   </div>
 )
 }

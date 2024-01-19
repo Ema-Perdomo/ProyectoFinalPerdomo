@@ -20,7 +20,7 @@ function NavBar() {
             <Link to="/categoria/Gym" className='Pestaña'>Gym</Link>
             <Link to="/categoria/Deportes" className='Pestaña'>Deportes</Link>
             <Link to="/categoria/Indumentaria" className='Pestaña'>Indumentaria</Link>
-            <Link to="/categoria/Suplemento" className='Pestaña'>Suplementos</Link>
+            <Link to="/categoria/Suplementos" className='Pestaña'>Suplementos</Link>
             
           </Nav>
           <Link to="/cart" className="NavBarItems" > <CartWidget /> </Link>

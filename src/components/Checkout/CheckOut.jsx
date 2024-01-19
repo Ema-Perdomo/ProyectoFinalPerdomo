@@ -125,7 +125,7 @@ export const CheckOut = () => {
 
                 {error && <p>{error}</p>}
                 {ordenId && (
-                    <p>Gracias por tu compra. El num. de seguimiento es: <br> {ordenId} </br></p>
+                    <p>Gracias por tu compra. El num. de seguimiento es: <br/> {ordenId} </p>
                 )}
                 <div>
                     <button type="submit">Finalizar comprar</button>

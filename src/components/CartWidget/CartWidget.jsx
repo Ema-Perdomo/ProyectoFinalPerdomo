@@ -1,11 +1,12 @@
 import { TbGardenCart } from "react-icons/tb";
+import { useCartContext } from "../context/CartContext";
 
 const CartWidget = () => {
+  const {totalProducts} = useCartContext();
   return (
     <div>
       <i><TbGardenCart /></i>
-      <span className="qty-display">0</span>
-      
+      <span className="qty-display">{totalProducts()}</span>
     </div>
   )
 }
